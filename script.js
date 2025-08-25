@@ -1,12 +1,18 @@
-const image = document.getElementById('image');
+const img = document.getElementById('Image');
 
 document.addEventListener('mousemove', (e) => {
     const { innerWidth, innerHeight } = window;
-    const x = (e.clientX / innerWidth - 0.5) * 30; // range -15 to 15
-    const y = (e.clientY / innerHeight - 0.5) * 30; // range -15 to 15
-    image.style.transform = `rotateY(${x}deg) rotateX(${-y}deg)`;
+    // Get cursor position relative to center
+    const offsetX = e.clientX - innerWidth / 2;
+    const offsetY = e.clientY - innerHeight / 2;
+
+    // Apply small movement factor
+    const moveX = offsetX * 0.03;
+    const moveY = offsetY * 0.03;
+
+    img.style.transform = `translate(${moveX}px, ${moveY}px)`;
 });
 
 document.addEventListener('mouseleave', () => {
-    image.style.transform = `rotateY(0deg) rotateX(0deg)`;
+    img.style.transform = `translate(0px, 0px)`;
 });
